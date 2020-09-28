@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>Weather</NAME>
+	<OUTCOME>sunny</OUTCOME>
+	<OUTCOME>overcast</OUTCOME>
+	<OUTCOME>raining</OUTCOME>
+	<OUTCOME>snowing</OUTCOME>
+	<PROPERTY>position = (7859.08251953125, 5092.58056640625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Visibility</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (8170.634765625, 5186.0419921875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Visibility Sensor</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (8190.349609375, 5427.88134765625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Day</NAME>
+	<OUTCOME>working</OUTCOME>
+	<OUTCOME>holiday</OUTCOME>
+	<PROPERTY>position = (7452.72412109375, 5103.5087890625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Time</NAME>
+	<OUTCOME>peak</OUTCOME>
+	<OUTCOME>off</OUTCOME>
+	<PROPERTY>position = (7721.62548828125, 5249.45654296875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Traffic Flow</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (7510.01953125, 5418.880859375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Alarm</NAME>
+	<OUTCOME>true</OUTCOME>
+	<OUTCOME>false</OUTCOME>
+	<PROPERTY>position = (7859.3955078125, 5634.419921875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Camera</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (7862.1923828125, 5342.52490234375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Traffic Congestion</NAME>
+	<OUTCOME>true</OUTCOME>
+	<OUTCOME>false</OUTCOME>
+	<PROPERTY>position = (7857.5380859375, 5492.29736328125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Take Car</NAME>
+	<OUTCOME>true</OUTCOME>
+	<OUTCOME>false</OUTCOME>
+	<PROPERTY>position = (7458.64990234375, 5244.76123046875)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>Weather</FOR>
+	<TABLE>0.4 0.3 0.2 0.1</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Visibility</FOR>
+	<GIVEN>Weather</GIVEN>
+	<TABLE>1.0 0.0 0.7 0.3 0.3 0.7 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Visibility Sensor</FOR>
+	<GIVEN>Visibility</GIVEN>
+	<TABLE>0.95 0.05 0.05 0.95</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Day</FOR>
+	<TABLE>0.78 0.22</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Time</FOR>
+	<TABLE>0.375 0.625</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Traffic Flow</FOR>
+	<GIVEN>Time</GIVEN>
+	<GIVEN>Take Car</GIVEN>
+	<TABLE>1.0 0.0 0.4 0.6 0.6 0.4 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Alarm</FOR>
+	<GIVEN>Traffic Congestion</GIVEN>
+	<TABLE>0.9 0.1 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Camera</FOR>
+	<GIVEN>Visibility</GIVEN>
+	<GIVEN>Traffic Flow</GIVEN>
+	<TABLE>0.95 0.05 0.05 0.95 0.9 0.1 0.01 0.99</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Traffic Congestion</FOR>
+	<GIVEN>Visibility Sensor</GIVEN>
+	<GIVEN>Traffic Flow</GIVEN>
+	<TABLE>0.65 0.35 0.05 0.95 0.95 0.05 0.25 0.75</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Take Car</FOR>
+	<GIVEN>Weather</GIVEN>
+	<GIVEN>Day</GIVEN>
+	<TABLE>0.6 0.4 0.6 0.4 0.6 0.4 0.3 0.7 0.5 0.5 0.2 0.8 0.2 0.8 0.1 0.9</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>
